@@ -1,0 +1,44 @@
+# 1. Define a function to assess flood risk based on input parameters
+def predict_flood(rainfall, river_level, soil_saturation, wind_speed):
+    """
+    Simple rule-based flood prediction logic.
+    Returns True if flood is likely, False otherwise.
+    """
+    if rainfall > 200 and river_level > 5.0 and soil_saturation > 80:
+        return True
+    elif rainfall > 250 and soil_saturation > 85:
+        return True
+    elif river_level > 6.0 and wind_speed > 20:
+        return True
+    else:
+        return False
+
+# 2. Emergency management response
+def flood_response(flood_predicted):
+    if flood_predicted:
+        print("⚠ Flood Warning Issued!")
+        print("→ Notify emergency services")
+        print("→ Send public alerts")
+        print("→ Prepare evacuation routes")
+    else:
+        print("✅ Conditions normal. Monitoring continues.")
+
+# 3. Simulate input data (can be from sensors or API)
+def simulate_flood_scenario():
+    # Example input values
+    rainfall = 280         # in mm
+    river_level = 5.5      # in meters
+    soil_saturation = 88   # in percent
+    wind_speed = 18        # in km/h
+
+    print("📊 Input Conditions:")
+    print(f"Rainfall: {rainfall} mm")
+    print(f"River Level: {river_level} m")
+    print(f"Soil Saturation: {soil_saturation}%")
+    print(f"Wind Speed: {wind_speed} km/h")
+
+    flood_predicted = predict_flood(rainfall, river_level, soil_saturation, wind_speed)
+    flood_response(flood_predicted)
+
+# Run simulation
+simulate_flood_scenario()
