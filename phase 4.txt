@@ -1,0 +1,91 @@
+"""
+Natural Disaster Prediction and Management System
+Project Demonstration & Documentation
+Author: [Your Name]
+Date: [Date]
+"""
+
+import pandas as pd
+
+# --------------------------------
+# 1. Load and Display Sample Dataset
+# --------------------------------
+def load_data():
+    """
+    Simulates a dataset with environmental conditions related to flood risk.
+    Returns a DataFrame.
+    """
+    data = {
+        'rainfall': [100, 250, 300, 50, 400, 120],
+        'river_level': [2.1, 5.2, 6.0, 1.0, 6.5, 3.2],
+        'wind_speed': [10, 20, 15, 5, 25, 12],
+        'soil_saturation': [40, 85, 90, 20, 95, 50],
+        'flood_occurred': [0, 1, 1, 0, 1, 0]  # historical outcomes
+    }
+    df = pd.DataFrame(data)
+    print("📊 Sample Dataset:")
+    print(df)
+    return df
+
+# --------------------------------
+# 2. Rule-Based Prediction Logic
+# --------------------------------
+def predict_flood(row):
+    """
+    Applies simple threshold rules to predict if a flood is likely.
+    Returns 1 (flood) or 0 (no flood).
+    """
+    if row['rainfall'] > 200 and row['river_level'] > 5.0 and row['soil_saturation'] > 80:
+        return 1
+    elif row['rainfall'] > 250 and row['soil_saturation'] > 85:
+        return 1
+    elif row['river_level'] > 6.0 and row['wind_speed'] > 20:
+        return 1
+    else:
+        return 0
+
+# --------------------------------
+# 3. Emergency Management Actions
+# --------------------------------
+def manage_disaster(prediction):
+    """
+    Prints disaster management actions based on the prediction.
+    """
+    if prediction == 1:
+        print("⚠ Flood predicted: Initiating disaster response protocol.")
+        print("→ Notify authorities")
+        print("→ Alert residents in high-risk zones")
+        print("→ Mobilize emergency services")
+    else:
+        print("✅ Conditions are normal. Monitoring continues.")
+
+# --------------------------------
+# 4. New Scenario Demonstration
+# --------------------------------
+def demonstrate_prediction():
+    """
+    Demonstrates the prediction and response for a new scenario.
+    """
+    print("\n🔍 Demonstrating prediction on new environmental data:")
+    new_data = {
+        'rainfall': 310,
+        'river_level': 6.2,
+        'wind_speed': 22,
+        'soil_saturation': 89
+    }
+    print(f"Input Conditions: {new_data}")
+    prediction = predict_flood(new_data)
+    manage_disaster(prediction)
+
+# --------------------------------
+# 5. Main Program
+# --------------------------------
+def main():
+    print("@ Natural Disaster Prediction & Management System")
+    df = load_data()
+    demonstrate_prediction()
+    print("\n✅ Project Demonstration Complete.")
+
+# Run the program
+if _name_ == "_main_":
+    main()
